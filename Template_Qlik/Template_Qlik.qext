@@ -1,0 +1,15 @@
+{
+    "name": "Template Qlik Extension",
+    "description": "Basic template for creating Qlik Sense extensions",
+    "type": "visualization",
+    "version": "1.0.0",
+    "icon": "puzzle",
+    "author": "Your Name",
+    "homepage": "",
+    "keywords": "template, extension",
+    "license": "MIT",
+    "repository": "",
+    "dependencies": {
+        "qlik-sense": ">=3.0.x"
+    }
+}
