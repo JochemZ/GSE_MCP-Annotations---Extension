@@ -1,0 +1,9 @@
+{
+  "name": "JZ Annotations",
+  "description": "Qlik extension for annotations with MCP Orchestrator and Claude AI integration",
+  "type": "visualization",
+  "version": "1.0.0",
+  "author": "Jochem Zwienenberg",
+  "icon": "extension",
+  "preview": "preview.png"
+}
