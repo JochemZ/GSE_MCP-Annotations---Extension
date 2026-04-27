@@ -36,7 +36,23 @@ Starter template for new extensions
 
 ### Deployment
 - `deploy-extension.js` - Automated deployment script to Qlik Cloud
-- Uses Replit Secrets for credentials (see below)
+- Uses Replit Secrets for credentials (see Environment section)
+- Supports multiple tenants (JochemZ and Sales)
+
+**Multi-Tenant Setup:**
+This project has access to two Qlik Cloud tenants:
+- **JochemZ tenant**: Use `QLIK_JOCHEMZ_TENANT_URL` and `QLIK_JOCHEMZ_API_KEY`
+- **Sales tenant**: Use `QLIK_SALES_TENANT_URL` and `QLIK_SALES_API_KEY`
+
+Example usage in code:
+```js
+const tenantUrl = process.env.QLIK_JOCHEMZ_TENANT_URL;
+const apiKey = process.env.QLIK_JOCHEMZ_API_KEY;
+
+const response = await fetch(`${tenantUrl}/api/v1/extensions`, {
+  headers: { 'Authorization': `Bearer ${apiKey}` }
+});
+```
 
 **IMPORTANT:** All API keys, tokens, and credentials MUST be stored in **Replit Secrets**
 (not in `.env` files). Access them via `process.env.VARIABLE_NAME`.
@@ -50,8 +66,12 @@ Always keep these Replit constraints and features in mind:
 - **Secrets**: Use **Replit Secrets** for ALL sensitive values — API keys, tokens,
   client secrets, OAuth credentials. Never hardcode credentials or commit `.env`
   files. Access secrets via `process.env.SECRET_NAME`.
-  - Common secrets for this project: `QLIK_API_KEY`, `QLIK_TENANT`, `QLIK_REGION`
-  - To set secrets: Tools → Secrets in Replit sidebar
+  - **Available secrets in this project:**
+    - `QLIK_JOCHEMZ_TENANT_URL` - JochemZ tenant URL
+    - `QLIK_JOCHEMZ_API_KEY` - JochemZ tenant API key
+    - `QLIK_SALES_TENANT_URL` - Sales tenant URL
+    - `QLIK_SALES_API_KEY` - Sales tenant API key
+  - To set/view secrets: Tools → Secrets in Replit sidebar
 - **Ports**: Use `process.env.PORT` or default to `3000`/`5000`. Only one port
   is publicly accessible per repl.
 - **Packages**: Use `npm install` for Node.js. Replit manages `node_modules`
