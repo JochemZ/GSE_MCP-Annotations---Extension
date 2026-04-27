@@ -133,7 +133,7 @@ dist
 .breakpoints
 
 # ===================================================================
-# CUSTOM: Only include Template_Qlik folder in GitHub
+# CUSTOM: Include project folders in GitHub
 # ===================================================================
 
 # Ignore everything at root level
@@ -144,6 +144,8 @@ dist
 !README.md
 !.claude/
 !Template_Qlik/
+!Sample Project/
 
 # Keep node_modules ignored even if it's in the folder
 Template_Qlik/node_modules/
+Sample Project/node_modules/

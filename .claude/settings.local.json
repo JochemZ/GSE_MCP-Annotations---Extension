@@ -123,7 +123,11 @@
       "Bash(/tmp/remove_useTemplate.js:*)",
       "Bash(/tmp/remove_show.js:*)",
       "Bash(git init)",
-      "Bash(git add .)"
+      "Bash(git add .)",
+      "Bash(git remote add origin https://github.com/JochemZ/GSE_MCP-Annotations-Extension.git)",
+      "Bash(git branch -M main)",
+      "Bash(git push -u origin main)",
+      "Bash(git remote set-url origin https://github.com/JochemZ/GSE_MCP-Annotations---Extension.git)"
     ],
     "deny": [
       "Read(*.csv)",

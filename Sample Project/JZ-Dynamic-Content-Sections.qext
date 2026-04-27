@@ -1,0 +1,15 @@
+{
+    "name": "JZ - Dynamic Content Sections",
+    "description": "Display dynamic content sections with embedded content tags (#[header], #[title], #[colortext], #[row], #[image], #[table], #[list], #[kpi], #[grid], #[concat], #[box], #[viz], #[claude]). Supports dimension coloring via master item colors, value-based color mapping, multi-column layouts, Primary Key-based content editing, and real-time multi-user collaboration.",
+    "type": "visualization",
+    "version": "2.0.77",
+    "icon": "icon.svg",
+    "author": "Jochem Zwienenberg - Global Sales Enablement",
+    "homepage": "",
+    "keywords": "dynamic, content, sections, list, table, columns, kpi, grid, tags, colors, edit, api, pk, claude, visualization, multi-user, collaboration, polling",
+    "license": "MIT",
+    "repository": "",
+    "dependencies": {
+        "qlik-sense": ">=3.0.x"
+    }
+}

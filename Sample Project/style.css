@@ -1,0 +1,914 @@
+/* Set white background for the extension - SCOPED to this extension only */
+.qv-object-jz-dynamic-content-sections {
+    background: white !important;
+}
+
+.qv-object-jz-dynamic-content-sections .qv-object-content-container,
+.qv-object-jz-dynamic-content-sections .qv-inner-object,
+.qv-object-jz-dynamic-content-sections .qv-object {
+    background: white !important;
+}
+
+/* Also target the extension's root if Qlik wraps it */
+[tid="jz-dynamic-content-sections"] {
+    background: white !important;
+}
+
+[tid="jz-dynamic-content-sections"] .qv-object-content-container,
+[tid="jz-dynamic-content-sections"] .qv-inner-object {
+    background: white !important;
+}
+
+.multi-section-container {
+    color: #333;
+    padding: 0px;
+    height: 100%;
+    background: white !important;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Ensure all container levels have white background */
+.groups-container,
+.group-container {
+    background: white;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Make last row groups fill available vertical space */
+.group-container.last-row-group {
+    height: 100%;
+    align-self: stretch;
+}
+
+/* PK Status Indicator */
+.pk-status {
+    padding: 6px 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-size: 13px;
+    border-left: 4px solid #ccc;
+}
+
+.pk-status.pk-selected {
+    background: #f1f8e9;
+    border-left-color: #2E7D32;
+    color: #1b5e20;
+}
+
+.pk-status.pk-warning {
+    background: #fff3e0;
+    border-left-color: #f57c00;
+    color: #e65100;
+}
+
+.pk-status strong {
+    font-weight: 600;
+}
+
+.markdown-section {
+    background: transparent;
+    border-radius: 4px;
+    position: relative;
+    transition: box-shadow 0.2s ease;
+    box-sizing: border-box;
+    overflow: visible; /* Ensure bullets are not clipped */
+    min-width: 0; /* Prevent grid blowout */
+}
+
+.markdown-section:last-child {
+    margin-bottom: 0 !important;
+}
+
+.markdown-section[data-section-style="card"] {
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.markdown-section[data-section-style="card"]:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.markdown-section[data-section-style="plain"] {
+    border: none;
+    background: transparent;
+}
+
+.markdown-section[data-section-style="highlighted"] {
+    border-left: 4px solid #009845;
+    background: transparent;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Section Header */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+    min-height: 20px;
+}
+
+.section-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #777;
+    letter-spacing: 0.5px;
+    flex-grow: 1;
+    line-height: 1;
+}
+
+/* Edit Modal */
+.edit-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.edit-modal {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 1000px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 32px;
+    line-height: 1;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.modal-body {
+    padding: 24px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.edit-textarea {
+    width: 100%;
+    min-height: 300px;
+    padding: 12px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.edit-textarea:focus {
+    outline: none;
+    border-color: #009845;
+    box-shadow: 0 0 0 3px rgba(0, 152, 69, 0.1);
+}
+
+/* Editor Toolbar */
+.editor-toolbar {
+    display: flex;
+    gap: 4px;
+    padding: 8px;
+    background: #f5f5f5;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.editor-toolbar button {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 34px;
+}
+
+.editor-toolbar button:hover {
+    background: #e0e0e0;
+    border-color: #999;
+}
+
+.editor-toolbar button:active {
+    background: #d0d0d0;
+    transform: translateY(1px);
+}
+
+.editor-toolbar button[title*="Reset"] {
+    background: #fff3cd;
+    border-color: #ffc107;
+    font-weight: 500;
+}
+
+/* Qlik Section Content Protection (deletable badge for entire section data) */
+.qlik-section-content {
+    display: inline-block !important;
+    background-color: #e3f2fd !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+    margin: 2px !important;
+    border: 2px solid #90caf9 !important;
+    cursor: pointer !important;
+    user-select: all !important;
+    transition: all 0.2s ease !important;
+    position: relative !important;
+}
+
+.qlik-section-content:hover {
+    background-color: #bbdefb !important;
+    border-color: #42a5f5 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+    transform: scale(1.01) !important;
+}
+
+.qlik-section-content:hover::after {
+    content: "🗑️ Delete" !important;
+    position: absolute !important;
+    top: -24px !important;
+    right: 0 !important;
+    background: #f44336 !important;
+    color: white !important;
+    padding: 4px 8px !important;
+    border-radius: 3px !important;
+    font-size: 11px !important;
+    font-weight: bold !important;
+    white-space: nowrap !important;
+    z-index: 1000 !important;
+}
+
+.qlik-section-content:active {
+    background-color: #90caf9 !important;
+    transform: scale(1) !important;
+}
+
+.editor-toolbar button[title*="Reset"]:hover {
+    background: #ffe082 !important;
+    border-color: #ffa000 !important;
+}
+
+.editor-toolbar button[title*="Undo"] {
+    font-weight: 500;
+}
+
+.editor-toolbar button b,
+.editor-toolbar button i,
+.editor-toolbar button u {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.editor-toolbar select {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: white;
+    cursor: pointer;
+    font-size: 14px;
+    height: 34px;
+}
+
+.editor-toolbar select:hover {
+    border-color: #999;
+}
+
+.editor-toolbar input[type="color"] {
+    width: 40px;
+    height: 34px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    background: white;
+    padding: 2px;
+}
+
+.editor-toolbar input[type="color"]:hover {
+    border-color: #999;
+}
+
+.toolbar-separator {
+    width: 1px;
+    height: 24px;
+    background: #ccc;
+    margin: 0 4px;
+}
+
+.modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.status-message {
+    flex-grow: 1;
+    font-size: 14px;
+    padding: 8px 0;
+}
+
+.status-message.success {
+    color: #2E7D32;
+    font-weight: 500;
+}
+
+.status-message.error {
+    color: #C62828;
+    font-weight: 500;
+}
+
+.modal-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancel-btn {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.cancel-btn:hover {
+    background: #e0e0e0;
+}
+
+.save-btn {
+    background: #009845;
+    color: white;
+}
+
+.save-btn:hover {
+    background: #007a38;
+}
+
+.save-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+.save-local-btn {
+    background: #1565C0;
+    color: white;
+}
+
+.save-local-btn:hover {
+    background: #0d47a1;
+}
+
+.save-local-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+.section-content {
+    width: 100%;
+    overflow: visible; /* Allow bullets to show outside padding area */
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Markdown Content Styles */
+.markdown-content {
+    line-height: 1.1;
+    color: #333;
+    overflow: visible; /* Allow bullets to show */
+    min-width: 0;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+/* Fix background color coverage for large text in editor */
+.markdown-content span[style*="background-color"],
+.markdown-content font[style*="background-color"] {
+    line-height: 1.5;
+    display: inline-block;
+    padding: 3px 4px;
+    vertical-align: baseline;
+}
+
+/* Extra padding for larger font sizes */
+.markdown-content font[size="5"] *[style*="background-color"],
+.markdown-content font[size="6"] *[style*="background-color"],
+.markdown-content font[size="7"] *[style*="background-color"],
+.markdown-content font[size="5"][style*="background-color"],
+.markdown-content font[size="6"][style*="background-color"],
+.markdown-content font[size="7"][style*="background-color"] {
+    line-height: 1.6;
+    padding: 5px 6px;
+}
+
+.markdown-content h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    border: none;
+    color: #1a1a1a;
+    line-height: 1.1;
+}
+
+.markdown-content h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    border: none;
+    color: #1a1a1a;
+    line-height: 1.1;
+}
+
+.markdown-content h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    border: none;
+    color: #1a1a1a;
+    line-height: 1.1;
+}
+
+.markdown-content h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    border: none;
+    color: #1a1a1a;
+    line-height: 1.1;
+}
+
+.markdown-content p {
+    margin: 0 0 2px 0;
+    line-height: 1.1;
+}
+
+.markdown-content strong {
+    font-weight: 600;
+}
+
+.markdown-content em {
+    font-style: italic;
+}
+
+.markdown-content a {
+    color: #009845;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.markdown-content a:hover {
+    border-bottom-color: #009845;
+}
+
+/* List Styles - match #[list] tag spacing (20px bullet + 8px gap, left-aligned) */
+.markdown-content ul,
+.markdown-content ol {
+    margin: 0 0 2px 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.markdown-content li {
+    margin-bottom: 0px;
+    padding-left: 28px; /* 20px bullet area + 8px gap */
+    line-height: 1.1;
+    position: relative;
+}
+
+.markdown-content ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    width: 20px;
+    text-align: left; /* Left-align bullet to match #[list] tag */
+}
+
+.markdown-content ol {
+    counter-reset: list-counter;
+}
+
+.markdown-content ol li::before {
+    content: counter(list-counter) '.';
+    counter-increment: list-counter;
+    position: absolute;
+    left: 0;
+    width: 20px;
+    text-align: left; /* Left-align numbers to match #[list] tag */
+}
+
+.markdown-content ul ul li::before {
+    content: '○'; /* Hollow circle for second level */
+}
+
+.markdown-content ul ul ul li::before {
+    content: '▪'; /* Square for third level */
+}
+
+/* Colored List Styles */
+.colored-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.list-item {
+    padding: 10px 12px;
+    border-left: 4px solid #757575;
+    background: #fafafa;
+    border-radius: 0 4px 4px 0;
+    transition: background 0.2s ease;
+}
+
+.list-item:hover {
+    background: #f5f5f5;
+}
+
+.list-item-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 4px;
+}
+
+.list-item-subtitle {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Column Layout Styles */
+.column-layout {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.column-layout-grid {
+    display: grid !important;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+/* Ensure column sections fit within grid cells */
+.column-layout-grid > .markdown-section {
+    width: 100%;
+    height: 100%;
+    min-width: 0; /* Prevent grid blowout */
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Column sections are now individual cards, removed .column-item styling */
+.column-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.column-content {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Table Styles */
+.data-table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.data-table thead {
+    background: #f5f5f5;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.data-table th {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.data-table tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background 0.15s ease;
+}
+
+.data-table tbody tr:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.data-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.data-table td {
+    padding: 10px 12px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.data-table td:first-child {
+    font-weight: 500;
+}
+
+/* No Data Message */
+.no-data {
+    padding: 0;
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}
+
+/* Section Row Layout */
+.section-row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.section-row .markdown-section {
+    height: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .column-layout {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .column-layout-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .edit-modal {
+        width: 95%;
+        max-height: 90vh;
+        max-width: 95% !important;
+    }
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 16px;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .status-message {
+        order: -1;
+        margin-bottom: 8px;
+    }
+
+    /* Stack dual-view vertically on mobile */
+    .modal-body > div[style*="display: flex"] {
+        flex-direction: column !important;
+    }
+
+    .modal-body > div > div[style*="flex: 1"] {
+        min-height: 200px;
+    }
+
+    .modal-body button[title*="Copy"] {
+        transform: rotate(90deg);
+        margin: 10px 0;
+    }
+
+    .column-layout,
+    .column-layout-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Stack all sections vertically on mobile */
+    .section-row .markdown-section {
+        grid-column: span 12 !important;
+    }
+
+    .markdown-content h1 {
+        font-size: 24px;
+    }
+
+    .markdown-content h2 {
+        font-size: 20px;
+    }
+
+    .markdown-content h3 {
+        font-size: 18px;
+    }
+
+    .data-table {
+        font-size: 12px;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 8px;
+    }
+}
+
+/* Scrollable table container for wide tables */
+.section-content table {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Wrap tables for horizontal scrolling without affecting bullets */
+.markdown-content > table {
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Edit Button Styles */
+.section-edit-btn {
+    transition: opacity 0.2s ease, color 0.2s ease, filter 0.2s ease !important;
+}
+
+.section-edit-btn:disabled,
+.section-edit-btn.disabled {
+    opacity: 0.3 !important;
+    cursor: not-allowed !important;
+    filter: grayscale(100%) !important;
+    pointer-events: none;
+}
+
+.section-edit-btn:not(:disabled):hover {
+    color: #009845 !important;
+}
+
+/* Section Icon Button Styles */
+.section-icon-btn {
+    font-family: inherit;
+}
+
+.section-icon-btn:active {
+    transform: translateY(1px);
+}
+
+/* Claude AI Analysis */
+.claude-analysis-container {
+    position: relative;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Loading spinner */
+.jz-loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 200px;
+    color: #666;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.jz-loading-spinner-icon {
+    width: 80px;
+    height: 80px;
+    border: 6px solid #e0e0e0;
+    border-top: 6px solid #009845;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 25px;
+}
+
+.jz-loading-spinner-text {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+}
+
+.jz-loading-spinner-subtext {
+    font-size: 16px;
+    color: #777;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* Multi-user update notification */
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.update-notification {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.4;
+}
+
+.update-notification strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #1976d2;
+}
+
+.update-notification small {
+    display: block;
+    margin-top: 4px;
+    color: #555;
+}

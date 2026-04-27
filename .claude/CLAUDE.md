@@ -18,12 +18,40 @@ reasoning when making architectural decisions.
 
 ---
 
+## Project Structure
+
+This repository contains multiple Qlik Cloud extensions:
+
+### Sample Project/
+Reference implementation: **JZ-Dynamic-Content-Sections**
+- A complete, production-ready extension demonstrating advanced features
+- Includes comprehensive EXAMPLES.md with usage patterns
+- Shows best practices for Legacy API extensions
+- Contains: .js, .qext, style.css, icon.svg, preview.png
+
+### Template_Qlik/
+Starter template for new extensions
+- Basic structure for quick prototyping
+- Minimal boilerplate to get started
+
+### Deployment
+- `deploy-extension.js` - Automated deployment script to Qlik Cloud
+- Uses Replit Secrets for credentials (see below)
+
+**IMPORTANT:** All API keys, tokens, and credentials MUST be stored in **Replit Secrets**
+(not in `.env` files). Access them via `process.env.VARIABLE_NAME`.
+
+---
+
 ## Environment: Replit
 
 Always keep these Replit constraints and features in mind:
 
-- **Secrets**: Use Replit Secrets for ALL sensitive values — API keys, tokens,
-  client secrets. Never hardcode credentials or commit `.env` files.
+- **Secrets**: Use **Replit Secrets** for ALL sensitive values — API keys, tokens,
+  client secrets, OAuth credentials. Never hardcode credentials or commit `.env`
+  files. Access secrets via `process.env.SECRET_NAME`.
+  - Common secrets for this project: `QLIK_API_KEY`, `QLIK_TENANT`, `QLIK_REGION`
+  - To set secrets: Tools → Secrets in Replit sidebar
 - **Ports**: Use `process.env.PORT` or default to `3000`/`5000`. Only one port
   is publicly accessible per repl.
 - **Packages**: Use `npm install` for Node.js. Replit manages `node_modules`
